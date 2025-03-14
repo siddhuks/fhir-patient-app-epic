@@ -91,19 +91,19 @@ function App () {
       })
 
       const data = await response.json()
-      console.log('🔵 Response from Token API:', data)
+      console.log('Response from Token API:', data)
 
       if (data.access_token) {
-        console.log('✅ Storing Access Token:', data.access_token)
+        console.log('Storing Access Token:', data.access_token)
         localStorage.setItem('access_token', data.access_token)
         setAccessToken(data.access_token)
 
-        console.log('🔵 data.patient:', data.patient)
+        console.log('data.patient:', data.patient)
         let extractedPatientId = data.patient || null
 
         if (extractedPatientId) {
           setPatientId(extractedPatientId)
-          console.log('✅ Extracted Patient ID:', extractedPatientId)
+          console.log('Extracted Patient ID:', extractedPatientId)
           localStorage.setItem('patient_id', extractedPatientId)
         } else {
           console.error('Patient ID not found in token response.')
@@ -150,7 +150,7 @@ function App () {
       }
 
       const data = await response.json()
-      console.log('✅ Patient Data:', data)
+      console.log('Patient Data:', data)
 
       const patientInfo = {
         name:
@@ -169,7 +169,7 @@ function App () {
   }
 
   const handleLogout = () => {
-    console.log('✅ Logging out and clearing session...')
+    console.log('Logging out and clearing session...')
     localStorage.clear()
     setAccessToken(null)
     setPatientData(null)
@@ -196,7 +196,7 @@ function App () {
       }
 
       const data = await response.json()
-      console.log('✅ Medications:', data)
+      console.log('Medications:', data)
       setMedications(data.entry || [])
     } catch (error) {
       console.error('Error fetching medications:', error)
@@ -257,7 +257,7 @@ function App () {
           )
         : []
 
-      console.log('✅ Sorted Vital Signs:', sortedVitalSigns)
+      console.log('Sorted Vital Signs:', sortedVitalSigns)
       setVitalSigns(sortedVitalSigns)
     } catch (error) {
       console.error('Error fetching vital signs:', error)
@@ -304,7 +304,7 @@ function App () {
 
   useEffect(() => {
     if (accessToken && patientId) {
-      console.log('🔄 Patient ID updated. Fetching patient data...')
+      console.log('Patient ID updated. Fetching patient data...')
       fetchPatientData(accessToken, patientId)
     }
   }, [patientId])
